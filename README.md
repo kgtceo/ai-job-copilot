@@ -101,10 +101,10 @@ python evals/run_evals.py            # full: checks + Opus judge, writes evals/r
 python evals/run_evals.py --no-judge # deterministic only (cheap; exit-codes for CI)
 ```
 
-**Run the API** (`[api]` extra) — OpenAPI docs generated from the same Pydantic models:
+**Run the API** — OpenAPI docs generated from the same Pydantic models (FastAPI +
+uvicorn are base deps):
 
 ```bash
-pip install -e ".[api]"
 uvicorn job_copilot.api:app --reload   # POST /api/analyze · docs at /docs
 ```
 

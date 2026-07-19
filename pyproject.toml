@@ -9,15 +9,19 @@ authors = [{ name = "Kareem Ghazal" }]
 keywords = ["llm", "ai", "anthropic", "claude", "evals", "structured-output"]
 dependencies = [
     "anthropic>=0.40",
+    "fastapi>=0.111",
     "fpdf2>=2.7",
     "pydantic>=2.7",
     "python-dotenv>=1.0",
-    "typer>=0.12",
     "rich>=13.7",
+    "typer>=0.12",
+    "uvicorn>=0.30",
 ]
 
 [project.optional-dependencies]
-api = ["fastapi>=0.111", "uvicorn>=0.30"]
+# fastapi + uvicorn are base deps (the deployed service IS the API, and cloud
+# builders only auto-install base deps). `api` kept as a back-compat alias.
+api = []
 dev = ["pytest>=8.2", "ruff>=0.5"]
 
 [project.scripts]

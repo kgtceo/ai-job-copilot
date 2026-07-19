@@ -9,9 +9,11 @@ the frontend.
 ## 1. Backend → Railway
 
 1. Railway → **New Project → Deploy from GitHub repo** → pick `ai-job-copilot`.
-2. Railway detects Python and uses `nixpacks.toml`:
-   - install: `pip install .[api]`
-   - start: `uvicorn job_copilot.api:app --host 0.0.0.0 --port $PORT`
+2. Railway's builder (Railpack) auto-installs the Python deps from `pyproject.toml`
+   (FastAPI + uvicorn are base deps), and `railway.json` sets the start command:
+   `uvicorn --app-dir src job_copilot.api:app --host 0.0.0.0 --port $PORT`.
+   (If you ever see "No start command detected", set that same command under
+   Settings → Deploy → Custom Start Command.)
 3. **Variables** (Settings → Variables):
    - `ANTHROPIC_API_KEY` = your key (this is how the key reaches prod — NOT the
      gitignored `.env`).
