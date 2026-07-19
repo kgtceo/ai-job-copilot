@@ -1,0 +1,12 @@
+[
+  {
+    "name": "senior-ai-engineer",
+    "jd": "../../examples/sample_jd.md",
+    "cv": "../../examples/sample_cv.md"
+  },
+  {
+    "name": "backend-python-contract",
+    "jd": "backend_python_jd.md",
+    "cv": "../../examples/sample_cv.md"
+  }
+]

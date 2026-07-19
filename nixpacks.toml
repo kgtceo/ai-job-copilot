@@ -1,0 +1,9 @@
+# Railway (Nixpacks) build config for the FastAPI backend.
+# Installs the package WITH the [api] extra (fastapi + uvicorn), then serves it
+# bound to Railway's injected $PORT.
+
+[phases.install]
+cmds = ["pip install .[api]"]
+
+[start]
+cmd = "uvicorn job_copilot.api:app --host 0.0.0.0 --port $PORT"
