@@ -9,22 +9,20 @@ the frontend.
 ## 1. Backend → Railway
 
 1. Railway → **New Project → Deploy from GitHub repo** → pick `ai-job-copilot`.
-2. Railway's builder (Railpack) auto-installs the Python deps from `pyproject.toml`
-   (FastAPI + uvicorn are base deps), and `railway.json` sets the start command:
-   `python -m uvicorn --app-dir src job_copilot.api:app --host 0.0.0.0 --port $PORT`
-   (invoked as a module because Railpack doesn't always put console scripts on
-   PATH). If you ever see "No start command detected", set that same command under
-   Settings → Deploy → Custom Start Command.
-3. **Expose it:** Settings → **Networking → Generate Domain** to get a public URL
-   (Railway calls it "Unexposed service" until you do).
+2. The repo has a **`Dockerfile`**, so Railway builds with Docker — it installs the
+   package + deps and runs `python -m uvicorn job_copilot.api:app` on `$PORT`.
+   Nothing to configure. (We use Docker because Railway's auto-detection builder
+   didn't reliably install the deps.)
 3. **Variables** (Settings → Variables):
    - `ANTHROPIC_API_KEY` = your key (this is how the key reaches prod — NOT the
      gitignored `.env`).
    - `COPILOT_CORS_ORIGINS` = your Vercel URL, e.g. `https://ai-job-copilot.vercel.app`
      (add your custom domain too if you use one, comma-separated). Localhost is
      always allowed via regex, so dev keeps working.
-4. Railway gives you a public URL like `https://ai-job-copilot-production.up.railway.app`.
-   Check `GET /health` → `{"ok":true,"configured":true}`. `configured:false` means
+4. **Expose it:** Settings → **Networking → Generate Domain** → gives a public URL
+   like `https://ai-job-copilot-production.up.railway.app` (Railway shows
+   "Unexposed service" until you do this).
+5. Check `GET /health` → `{"ok":true,"configured":true}`. `configured:false` means
    the API key variable isn't set.
 
 ## 2. Frontend → Vercel
