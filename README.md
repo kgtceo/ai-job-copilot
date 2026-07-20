@@ -1,8 +1,18 @@
 # ai-job-copilot
 
+### ▶ Live demo: **[aicopilot.kareemghazal.com](https://aicopilot.kareemghazal.com)**
+
+Click **"Load example"** to try it instantly. The first run takes ~15s (four
+sequential Claude calls) — that's the pipeline working, not a hang.
+
+![ai-job-copilot: a grounded application kit — match score, tailored résumé bullets, cover letter, and interview prep — generated from a job description and CV](docs/images/screenshot.png)
+
 A small, **production-shaped LLM pipeline** that reads a job description and your
 CV and produces a grounded application kit: a structured gap analysis, a match
 score, tailored résumé bullets, a cover letter, and an interview-prep pack.
+
+Deployed: Next.js UI on Vercel → FastAPI backend on Railway → Claude. See
+[DEPLOY.md](DEPLOY.md).
 
 It's built to demonstrate the things applied-AI-engineering roles actually test:
 **reliable structured output, a multi-step prompt pipeline, honest grounding, and
