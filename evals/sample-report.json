@@ -1,0 +1,70 @@
+[
+  {
+    "name": "senior-ai-engineer",
+    "match_score": 52,
+    "checks": {
+      "matched_skills_have_evidence": {
+        "passed": true,
+        "detail": "ok",
+        "severity": "gate"
+      },
+      "missing_skills_really_absent": {
+        "passed": true,
+        "detail": "ok",
+        "severity": "gate"
+      },
+      "tailored_bullets_grounded": {
+        "passed": false,
+        "detail": "keywords with weak lexical CV support (review; judge grades grounding): ['evals', 'llm', 'series a', 'structured output']",
+        "severity": "advisory"
+      },
+      "keyword_coverage_honest": {
+        "passed": true,
+        "detail": "claimed=0.55 lexical\u22480.45 delta=0.10",
+        "severity": "advisory"
+      },
+      "cover_letter_length": {
+        "passed": true,
+        "detail": "245 words (limit 260)",
+        "severity": "gate"
+      }
+    },
+    "gate_checks": "3/3",
+    "judge": null,
+    "judge_mean": null
+  },
+  {
+    "name": "backend-python-contract",
+    "match_score": 91,
+    "checks": {
+      "matched_skills_have_evidence": {
+        "passed": true,
+        "detail": "ok",
+        "severity": "gate"
+      },
+      "missing_skills_really_absent": {
+        "passed": true,
+        "detail": "ok",
+        "severity": "gate"
+      },
+      "tailored_bullets_grounded": {
+        "passed": false,
+        "detail": "keywords with weak lexical CV support (review; judge grades grounding): ['async', 'event-driven architecture', 'fintech']",
+        "severity": "advisory"
+      },
+      "keyword_coverage_honest": {
+        "passed": true,
+        "detail": "claimed=0.88 lexical\u22480.81 delta=0.06",
+        "severity": "advisory"
+      },
+      "cover_letter_length": {
+        "passed": true,
+        "detail": "231 words (limit 260)",
+        "severity": "gate"
+      }
+    },
+    "gate_checks": "3/3",
+    "judge": null,
+    "judge_mean": null
+  }
+]

@@ -7,6 +7,10 @@ sequential Claude calls) — that's the pipeline working, not a hang.
 
 ![ai-job-copilot: a grounded application kit — match score, tailored résumé bullets, cover letter, and interview prep — generated from a job description and CV](docs/images/screenshot.png)
 
+**How it works** — input → pipeline → output, with the eval harness that measures it:
+
+![ai-job-copilot — architecture and eval harness](docs/images/architecture.png)
+
 A small, **production-shaped LLM pipeline** that reads a job description and your
 CV and produces a grounded application kit: a structured gap analysis, a match
 score, tailored résumé bullets, a cover letter, and an interview-prep pack.
@@ -111,7 +115,7 @@ python evals/run_evals.py            # full: checks + Opus judge, writes evals/r
 python evals/run_evals.py --no-judge # deterministic only (cheap; exit-codes for CI)
 ```
 
-**Latest run (claude-sonnet-4-6):** 3/3 deterministic checks pass on both dataset roles (senior-ai-engineer, backend-python-contract). Grounding is surfaced as an advisory for human review — weak lexical CV support is flagged, not silently passed.
+**Latest run (claude-sonnet-4-6):** 3/3 deterministic checks pass on both dataset roles (senior-ai-engineer, backend-python-contract). Grounding is surfaced as an advisory for human review — weak lexical CV support is flagged, not silently passed. The actual generated report is committed at [`evals/sample-report.json`](evals/sample-report.json) — the claim is verifiable, not just asserted (`run_evals.py` writes a fresh one to `evals/reports/` each run).
 
 **Run the API** — OpenAPI docs generated from the same Pydantic models (FastAPI +
 uvicorn are base deps):
@@ -136,7 +140,7 @@ Deploy story: API on Render/Railway/Fly, UI on Vercel, `NEXT_PUBLIC_API_URL` wir
   literally cannot answer off-schema, and validation errors are recoverable.
 - **A model per task**: a fast workhorse (Sonnet) for extraction/tailoring; the
   strongest model (Opus) as the eval judge, so the grader is at least as sharp as
-  the thing it grades. Configurable via env.
+  the thing it grades. Configurable via environment variables.
 - **Dependency-injected client** so the whole pipeline is unit-testable offline.
 - **Grounding enforced in prompts + types + evals**, not trusted to one layer.
 - **Evals gate quality** — the difference between a demo and something you'd ship.
