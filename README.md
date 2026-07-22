@@ -111,6 +111,8 @@ python evals/run_evals.py            # full: checks + Opus judge, writes evals/r
 python evals/run_evals.py --no-judge # deterministic only (cheap; exit-codes for CI)
 ```
 
+**Latest run (claude-sonnet-4-6):** 3/3 deterministic checks pass on both dataset roles (senior-ai-engineer, backend-python-contract). Grounding is surfaced as an advisory for human review — weak lexical CV support is flagged, not silently passed.
+
 **Run the API** — OpenAPI docs generated from the same Pydantic models (FastAPI +
 uvicorn are base deps):
 
